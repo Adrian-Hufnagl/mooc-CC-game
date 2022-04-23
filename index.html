@@ -24,35 +24,62 @@
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <h1>Colors & Clothing</h1>
-  <div class="game-window">
+<!-- Add your site or application content here -->
+<h1>Colors & Clothing</h1>
+<div class="game-window">
   <div class="card-list">
-    <div class="character-card">1</div>
-    <div class="character-card">2</div>
-    <div class="character-card">3</div>
-    <div class="character-card">4</div>
-    <div class="character-card">5</div>
+    <div class="cc-card character-card">1</div>
+    <div class="cc-card character-card">2</div>
+    <div class="cc-card character-card">3</div>
+    <div class="cc-card character-card">4</div>
+    <div class="cc-card character-card">5</div>
   </div>
-    <div class="card-list">
-      <div class="character-card">6</div>
-      <div class="character-card">7</div>
-      <div class="character-card">8</div>
-      <div class="character-card">9</div>
-      <div class="character-card">10</div>
+  <div class="card-list">
+    <div class="cc-card character-card">6</div>
+    <div class="cc-card character-card">7</div>
+    <div class="cc-card character-card">8</div>
+    <div class="cc-card character-card">9</div>
+    <div class="cc-card character-card">10</div>
+  </div>
+  <button class="cc-button selection-button">Next</button>
+  <row class="coloring-row">
+    <div class="color-column">
+      <div class="cc-card color-card">Color 1</div>
+      <div class="cc-card color-card">Color 2</div>
+      <div class="cc-card color-card">Color 3</div>
+      <div class="cc-card color-card">Color 4</div>
+      <div class="cc-card color-card">Color 5</div>
     </div>
-  <button class="selection-button">Next</button>
-  </div>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+    <div style="display: inline-block">
+      <div class="cc-card character-card">9</div>
+    </div>
+    <div class="color-column" style="display: inline-block">
+      <div class="cc-card color-card">Color 6</div>
+      <div class="cc-card color-card">Color 7</div>
+      <div class="cc-card color-card">Color 8</div>
+      <div class="cc-card color-card">Color 9</div>
+      <div class="cc-card color-card">Color 10</div>
+    </div>
+  </row>
+  <button class="cc-button selection-button">Save</button>
+</div>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () {
+    ga.q.push(arguments)
+  };
+  ga.q = [];
+  ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('set', 'transport', 'beacon');
+  ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
