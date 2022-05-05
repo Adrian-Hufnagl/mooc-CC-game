@@ -26,22 +26,34 @@
 
 <!-- Add your site or application content here -->
 <h1>Colors & Clothing</h1>
-<div class="game-window">
-  <div class="card-list">
+<div id="start" class="game-window">
+  <p>This Game blablablabla ...</p>
+  <p>Choose your role</p>
+  <button onclick="startGame()" class="cc-button selection-button">Copycat</button>
+  <button onclick="startGame()" class="cc-button selection-button">Creator</button>
+</div>
+<div id="stage-1" class="game-window" style="display: none">
+  <p class="explain-text">Blablabla creator</p>
+  <p class="explain-text">Blablabla imitator</p>
+  <div class="card-list" id="card-list-1">
     <div class="cc-card character-card">1</div>
     <div class="cc-card character-card">2</div>
     <div class="cc-card character-card">3</div>
     <div class="cc-card character-card">4</div>
     <div class="cc-card character-card">5</div>
   </div>
-  <div class="card-list">
+  <div class="card-list" id="card-list-2">
     <div class="cc-card character-card">6</div>
     <div class="cc-card character-card">7</div>
     <div class="cc-card character-card">8</div>
     <div class="cc-card character-card">9</div>
     <div class="cc-card character-card">10</div>
   </div>
-  <button class="cc-button selection-button">Next</button>
+  <button onclick="switchStage()" class="cc-button selection-button">Next</button>
+</div>
+<div id="stage-2" class="game-window" style="display: none">
+  <p class="explain-text">Blablabla creator</p>
+  <p class="explain-text">Blablabla imitator</p>
   <row class="coloring-row">
     <div class="color-column">
       <div class="cc-card color-card">Color 1</div>
@@ -61,7 +73,7 @@
       <div class="cc-card color-card">Color 10</div>
     </div>
   </row>
-  <button class="cc-button selection-button">Save</button>
+  <button onclick="switchStage()" class="cc-button selection-button">Save</button>
 </div>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
@@ -69,17 +81,10 @@
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
-  window.ga = function () {
-    ga.q.push(arguments)
-  };
-  ga.q = [];
-  ga.l = +new Date;
-  ga('create', 'UA-XXXXX-Y', 'auto');
-  ga('set', 'anonymizeIp', true);
-  ga('set', 'transport', 'beacon');
-  ga('send', 'pageview')
+  window.addEventListener("DOMContentLoaded", function() {
+    shuffleCards();
+  }, false);
 </script>
-<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
