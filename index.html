@@ -27,7 +27,7 @@
 <!-- Add your site or application content here -->
 <h1>Colors & Clothing</h1>
 <p>Blablablablablabla</p>
-<p>Blablablablablabla</p>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero.</p>
 <div id="start" class="game-window">
   <p>This Game blablablabla ...</p>
   <p>Choose your role</p>
@@ -75,7 +75,12 @@
       <div class="cc-card color-card">Color 10</div>
     </div>
   </row>
-  <button onclick="switchStage()" class="cc-button selection-button">Save</button>
+  <button onclick="lockCharacter()" class="cc-button selection-button">Save</button>
+</div>
+<div id="stage-3" class="game-window" style="display: none">
+  <p>This is your character!</p>
+  <div class="cc-card character-card">Color 7</div>
+  <button onclick="restartGame()" class="cc-button selection-button">New Game</button>
 </div>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
