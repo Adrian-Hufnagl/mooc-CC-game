@@ -53,7 +53,7 @@ function lockCharacter() {
   var stage2 = document.getElementById("stage-2");
   var stage3 = document.getElementById("stage-3");
   stage2.style.display = "none";
-  stage3.style.display = "block";
+  stage3.style.display = "inline-block";
 }
 
 function restartGame(){

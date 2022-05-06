@@ -10,6 +10,9 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+p{
+  text-align: center
+}
 
 .game-window{
   width: 90vw;
@@ -23,6 +26,8 @@
 
 .card-list{
   width: 100%;
+  justify-content: center;
+  display: flex;
 }
 
 .cc-card{
@@ -47,10 +52,7 @@
 }
 
 .color-column{
-  width: 30%;
-}
-
-.coloring-row{
+  margin: 0 20px ;
 }
 
 .cc-card:hover {
@@ -58,26 +60,74 @@
   cursor: pointer;
 }
 
+.cc-button{
+  margin: 40px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border: none;
+}
+
 .selection-button{
   width: 200px;
   height: 50px;
   font-size: 32px;
-  margin: 40px;
   background: #73b4f9;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   color: #fff;
-  border: none;
+  border-radius: 8px;
 }
 
-.selection-button:hover{
+.end-button{
+  width: auto;
+  height: auto;
+  background: #73b4f9;
+  color: #fff;
+  font-size: 36px;
+  border-radius: 12px;
+  padding: 0px 30px;
+}
+
+.role1-button{
+  width: auto;
+  height: auto;
+  background: #73b4f9;
+  color: #fff;
+  font-size: 48px;
+  border-radius: 24px;
+  padding: 30px 50px;
+}
+
+.role2-button{
+  width: auto;
+  height: auto;
+  background: #f9b473;
+  color: #fff;
+  font-size: 48px;
+  border-radius: 24px;
+  padding: 30px 50px;
+}
+
+.selection-button:hover,
+.role1-button:hover,
+.end-button:hover{
   cursor: pointer;
   background: #4394f9;
+}
+
+.role2-button:hover{
+  cursor: pointer;
+  background: #f99443;
+}
+
+.cc-container{
+  width: 100%;
+  justify-content: center;
+  display: flex;
 }
 
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  font-family: sans-serif;
 }
 
 /*
