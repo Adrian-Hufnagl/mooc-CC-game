@@ -85,21 +85,18 @@
   <p class="explain-text">Blablabla creator</p>
   <p class="explain-text">Blablabla imitator</p>
   <div class="cc-container" id="card-list-1">
-    <div class="cc-card character-card">1</div>
-    <div class="cc-card character-card">2</div>
-    <div class="cc-card character-card">3</div>
-    <div class="cc-card character-card">4</div>
-    <div class="cc-card character-card">5</div>
+    <div onclick="switchStage()" class="cc-card character-card">1</div>
+    <div onclick="switchStage()" class="cc-card character-card">2</div>
+    <div onclick="switchStage()" class="cc-card character-card">3</div>
+    <div onclick="switchStage()" class="cc-card character-card">4</div>
+    <div onclick="switchStage()" class="cc-card character-card">5</div>
   </div>
   <div class="cc-container" id="card-list-2">
-    <div class="cc-card character-card">6</div>
-    <div class="cc-card character-card">7</div>
-    <div class="cc-card character-card">8</div>
-    <div class="cc-card character-card">9</div>
-    <div class="cc-card character-card">10</div>
-  </div>
-  <div class="cc-container">
-    <button onclick="switchStage()" class="cc-button selection-button">Next</button>
+    <div onclick="switchStage()" class="cc-card character-card">6</div>
+    <div onclick="switchStage()" class="cc-card character-card">7</div>
+    <div onclick="switchStage()" class="cc-card character-card">8</div>
+    <div onclick="switchStage()" class="cc-card character-card">9</div>
+    <div onclick="switchStage()" class="cc-card character-card">10</div>
   </div>
 </div>
 <div id="stage-2" class="game-window" style="display: none">
@@ -107,21 +104,21 @@
   <p class="explain-text">Blablabla imitator</p>
   <div class="cc-container">
       <div class="color-column" id="color-column-1">
-        <div class="cc-card color-card grey"></div>
-        <div class="cc-card color-card orange"></div>
-        <div class="cc-card color-card green"></div>
-        <div class="cc-card color-card pink"></div>
-        <div class="cc-card color-card blue"></div>
+        <div class="color-card color-card grey"></div>
+        <div class="color-card color-card orange"></div>
+        <div class="color-card color-card green"></div>
+        <div class="color-card color-card pink"></div>
+        <div class="color-card color-card blue"></div>
       </div>
       <div style="display: inline-block">
-        <div class="cc-card big-character-card">9</div>
+        <div class="big-character-card">9</div>
       </div>
       <div class="color-column" id="color-column-2" style="display: inline-block">
-        <div class="cc-card color-card black"></div>
-        <div class="cc-card color-card red"></div>
-        <div class="cc-card color-card brown" ></div>
-        <div class="cc-card color-card white"></div>
-        <div class="cc-card color-card yellow"></div>
+        <div class="color-card color-card black"></div>
+        <div class="color-card color-card red"></div>
+        <div class="color-card color-card brown" ></div>
+        <div class="color-card color-card white"></div>
+        <div class="color-card color-card yellow"></div>
       </div>
   </div>
 
@@ -132,11 +129,11 @@
 <div id="stage-3" class="game-window" style="display: none">
   <p style="text-align: center">This is your character!</p>
   <div class="cc-container">
-    <div class="cc-card character-card">Color 7</div>
+    <div class="big-character-card">Color 7</div>
   </div>
   <div class="cc-container">
-    <button onclick="restartGame()" class="cc-button end-button">
-      <p>New Game</p>
+    <button onclick="restartGame()" class="cc-button selection-button">
+      New Game
     </button>
   </div>
 </div>
