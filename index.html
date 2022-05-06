@@ -26,6 +26,8 @@
 
 <!-- Add your site or application content here -->
 <h1>Colors & Clothing</h1>
+<p>Blablablablablabla</p>
+<p>Blablablablablabla</p>
 <div id="start" class="game-window">
   <p>This Game blablablabla ...</p>
   <p>Choose your role</p>
@@ -55,7 +57,7 @@
   <p class="explain-text">Blablabla creator</p>
   <p class="explain-text">Blablabla imitator</p>
   <row class="coloring-row">
-    <div class="color-column">
+    <div class="color-column" id="color-column-1">
       <div class="cc-card color-card">Color 1</div>
       <div class="cc-card color-card">Color 2</div>
       <div class="cc-card color-card">Color 3</div>
@@ -65,7 +67,7 @@
     <div style="display: inline-block">
       <div class="cc-card character-card">9</div>
     </div>
-    <div class="color-column" style="display: inline-block">
+    <div class="color-column" id="color-column-2" style="display: inline-block">
       <div class="cc-card color-card">Color 6</div>
       <div class="cc-card color-card">Color 7</div>
       <div class="cc-card color-card">Color 8</div>
@@ -83,6 +85,7 @@
 <script>
   window.addEventListener("DOMContentLoaded", function() {
     shuffleCards();
+    shuffleColors();
   }, false);
 </script>
 </body>

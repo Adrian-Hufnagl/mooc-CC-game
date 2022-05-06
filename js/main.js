@@ -27,6 +27,17 @@ function shuffleCards() {
   }
 }
 
+function shuffleColors() {
+  var colors1 = document.querySelector('#color-column-1');
+  var colors2 = document.querySelector('#color-column-2');
+  for (var i = colors1.children.length; i >= 0; i--) {
+    colors1.appendChild(colors1.children[Math.random() * i | 0]);
+  }
+  for (var i = colors2.children.length; i >= 0; i--) {
+    colors2.appendChild(colors2.children[Math.random() * i | 0]);
+  }
+}
+
 function startGame(creator) {
   if(!creator){
     explainer = true;
