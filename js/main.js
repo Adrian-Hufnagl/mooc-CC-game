@@ -33,6 +33,21 @@ function startGame(creator) {
 
 }
 
+/* save the chosen role */
+function saveRole(role_id){
+  localStorage.clear();
+  localStorage.setItem('role_id', role_id);
+}
+
+/* save the chosen figurecard */
+function saveFigureCard(chosen_figurecard) {
+  localStorage.setItem('figurecard', chosen_figurecard);
+}
+
+function readFigureCard() {
+  localStorage.getItem('figurecard');
+}
+
 function switchStage() {
   var stage1 = document.getElementById("stage-1");
   var stage2 = document.getElementById("stage-2");
