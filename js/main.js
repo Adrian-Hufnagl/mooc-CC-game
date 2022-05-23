@@ -48,7 +48,11 @@ function readFigureCard() {
   localStorage.getItem('figurecard');
 }
 
-function switchStage() {
+function switchStage(cardNumber) {
+  var selectCard = document.getElementById("card-" + cardNumber.toString());
+  var selectFigure = selectCard.children[0];
+  var colorCard = document.getElementById("big-color-card");
+  colorCard.appendChild(selectFigure);
   var stage1 = document.getElementById("stage-1");
   var stage2 = document.getElementById("stage-2");
 
@@ -67,10 +71,17 @@ function switchStage() {
 function lockCharacter() {
   var stage2 = document.getElementById("stage-2");
   var stage3 = document.getElementById("stage-3");
+  var colorCard = document.getElementById("big-color-card");
+  var selectFigure =  colorCard.children[0]
+  var saveCard = document.getElementById("big-save-card");
+  saveCard.appendChild(selectFigure);
   stage2.style.display = "none";
   stage3.style.display = "inline-block";
 }
 
 function restartGame(){
   location.reload();
+}
+
+function newfunction(){
 }

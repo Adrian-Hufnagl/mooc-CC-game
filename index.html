@@ -74,22 +74,22 @@
         </script>
         <!-- CARDS -->
         <div class="cc-container" id="card-list-1">
-          <div onclick="switchStage()" class="cc-card character-card">1
-            <object data="img/Figure_shape3.svg" width="90%" height="90%"> </object>
+          <div onclick="switchStage(1)" class="cc-card character-card" id="card-1">1
+            <object onclick="newfunction()" data="img/Figure_shape3.svg" width="90%" height="90%"> </object>
           </div>
-          <div onclick="switchStage()" class="cc-card character-card">2
+          <div onclick="switchStage(2)" class="cc-card character-card" id="card-2">2
             <object data="img/Figure_shape3_2.svg" width="90%" height="90%"> </object>
           </div>
-          <div onclick="switchStage()" class="cc-card character-card">3</div>
-          <div onclick="switchStage()" class="cc-card character-card">4</div>
-          <div onclick="switchStage()" class="cc-card character-card">5</div>
+          <div onclick="switchStage(3)" class="cc-card character-card" id="card-3">3</div>
+          <div onclick="switchStage(4)" class="cc-card character-card" id="card-4">4</div>
+          <div onclick="switchStage(5)" class="cc-card character-card" id="card-5">5</div>
         </div>
         <div class="cc-container" id="card-list-2">
-          <div onclick="switchStage()" class="cc-card character-card">6</div>
-          <div onclick="switchStage()" class="cc-card character-card">7</div>
-          <div onclick="switchStage()" class="cc-card character-card">8</div>
-          <div onclick="switchStage()" class="cc-card character-card">9</div>
-          <div onclick="switchStage()" class="cc-card character-card">10</div>
+          <div onclick="switchStage(6)" class="cc-card character-card" id="card-6">6</div>
+          <div onclick="switchStage(7)" class="cc-card character-card" id="card-7">7</div>
+          <div onclick="switchStage(8)" class="cc-card character-card" id="card-8">8</div>
+          <div onclick="switchStage(9)" class="cc-card character-card" id="card-9">9</div>
+          <div onclick="switchStage(10)" class="cc-card character-card" id="card-10">10</div>
         </div>
       </div>
       <!-- stage-2 -->
@@ -114,8 +114,9 @@
             <div class="color-card color-card blue"></div>
           </div>
           <div style="display: inline-block">
-            <div class="big-character-card">1
-              <object data="img/Figure_shape3.svg" width="90%" height="90%"> </object>
+            <div class="big-character-card" id="big-color-card">1
+              <!--<object data="img/Figure_shape3.svg" width="90%" height="90%"> </object>-->
+
             </div>
           </div>
           <div class="color-column" id="color-column-2" style="display: inline-block">
@@ -134,7 +135,9 @@
       <div id="stage-3" class="game-window" style="display: none">
         <p class="explain-text">This is your character!</p>
         <div class="cc-container">
-          <div class="big-character-card">Color 7</div>
+          <div class="big-character-card" id="big-save-card">
+
+          </div>
         </div>
         <div class="cc-container">
           <button onclick="restartGame()" class="cc-button selection-button">
