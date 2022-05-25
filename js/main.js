@@ -55,6 +55,7 @@ function switchStage(cardNumber) {
   console.log('switch')
   var selectCard = document.getElementById("card-" + cardNumber.toString());
   var selectFigure = selectCard.children[0];
+  selectFigure.setAttribute("onclick","colorObject(this)");
   var colorCard = document.getElementById("big-color-card");
   colorCard.appendChild(selectFigure);
   console.log(selectFigure);
@@ -94,36 +95,49 @@ function selectColor(color){
 }
 
   function colorObject(object) {
+  svgimage = object.children[0];
     switch (selectedColor) {
       case 1:
+        console.log('colorObject')
+        console.log(object)
         coloring = 'grey';
+        svgimage.style.fill='grey'
         break;
       case 2:
         coloring = 'orange';
+        svgimage.style.fill='orange'
         break;
       case 3:
         coloring = 'green';
+        svgimage.style.fill='green'
         break;
       case 4:
         coloring = 'pink';
+        svgimage.style.fill='pink'
         break;
       case 5:
         coloring = 'blue';
+        svgimage.style.fill='blue'
         break;
       case 6:
         coloring = 'black';
+        svgimage.style.fill='black'
         break;
       case 7:
         coloring = 'red';
+        svgimage.style.fill='red'
         break;
       case 8:
         coloring = 'brown';
+        svgimage.style.fill='brown'
         break;
       case 9:
         coloring = 'white';
+        svgimage.style.fill='white'
         break;
       case 10:
         coloring = 'yellow';
+        svgimage.style.fill='yellow'
         break;
       default:
         break;
