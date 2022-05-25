@@ -1,4 +1,6 @@
 var explainer = false;
+var selectedColor = 0;
+var coloring = '';
 
 function shuffleCards() {
   var cards1 = document.querySelector('#card-list-1');
@@ -49,10 +51,13 @@ function readFigureCard() {
 }
 
 function switchStage(cardNumber) {
+  newfunction();
+  console.log('switch')
   var selectCard = document.getElementById("card-" + cardNumber.toString());
   var selectFigure = selectCard.children[0];
   var colorCard = document.getElementById("big-color-card");
   colorCard.appendChild(selectFigure);
+  console.log(selectFigure);
   var stage1 = document.getElementById("stage-1");
   var stage2 = document.getElementById("stage-2");
 
@@ -83,5 +88,50 @@ function restartGame(){
   location.reload();
 }
 
+function selectColor(color){
+  selectedColor = color
+  console.log(color);
+}
+
+  function colorObject(object) {
+    switch (selectedColor) {
+      case 1:
+        coloring = 'grey';
+        break;
+      case 2:
+        coloring = 'orange';
+        break;
+      case 3:
+        coloring = 'green';
+        break;
+      case 4:
+        coloring = 'pink';
+        break;
+      case 5:
+        coloring = 'blue';
+        break;
+      case 6:
+        coloring = 'black';
+        break;
+      case 7:
+        coloring = 'red';
+        break;
+      case 8:
+        coloring = 'brown';
+        break;
+      case 9:
+        coloring = 'white';
+        break;
+      case 10:
+        coloring = 'yellow';
+        break;
+      default:
+        break;
+    }
+    selectedColor = 0;
+  }
+
 function newfunction(){
+  var newElement = document.getElementById("test-object").children;
+  console.log(newElement[1]);
 }
