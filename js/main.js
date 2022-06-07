@@ -2,6 +2,7 @@ var explainer = false;
 var selectedColor = 0;
 var selectedColorElement;
 var coloring = '';
+var playerRole;
 
 function shuffleCards() {
   var cards1 = document.querySelector('#card-list-1');
@@ -26,6 +27,11 @@ function shuffleColors() {
 }
 
 function startGame(creator) {
+  /*save the chosen role */
+  playerRole = creator;
+  alert(playerRole);
+  setTextForRole();
+
   if(!creator){
     explainer = true;
   }
@@ -36,10 +42,22 @@ function startGame(creator) {
 
 }
 
-/* save the chosen role */
-function saveRole(role_id){
-  localStorage.clear();
-  localStorage.setItem('role_id', role_id);
+function setTextForRole(){
+  let text1;
+  let text2;
+  if (playerRole === 'dresser') {
+    text1 = "Pick a figure:" ;
+  } else if (playerRole === 'copycat') {
+    text1 = "Pick the figure that the Dresser describes to you:";
+  }
+  document.getElementById("explain-text-stage-1").innerHTML = text1;
+
+  if (playerRole === 'dresser') {
+    text2 = "Click on a colour and a piece of clothing to paint it:";
+  } else {
+    text2 = "Click on a colour and a piece of clothing to paint it. Follow the Dressers' description.";
+  }
+  document.getElementById("explain-text-stage-2").innerHTML = text2;
 }
 
 /* save the chosen figurecard */
