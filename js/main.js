@@ -3,6 +3,7 @@ var selectedColor = 0;
 var selectedColorElement;
 var coloring = '';
 var playerRole;
+var characterCards;
 
 function shuffleCards() {
   var cards1 = document.querySelector('#card-list-1');
@@ -29,8 +30,9 @@ function shuffleColors() {
 function startGame(creator) {
   /*save the chosen role */
   playerRole = creator;
-  alert(playerRole);
+  /*alert(playerRole);*/ 
   setTextForRole();
+  setCardsBackground();
 
   if(!creator){
     explainer = true;
@@ -60,13 +62,17 @@ function setTextForRole(){
   document.getElementById("explain-text-stage-2").innerHTML = text2;
 }
 
-/* save the chosen figurecard */
-function saveFigureCard(chosen_figurecard) {
-  localStorage.setItem('figurecard', chosen_figurecard);
-}
-
-function readFigureCard() {
-  localStorage.getItem('figurecard');
+function setCardsBackground(){
+  cardElements = 10;
+  var color;
+  for (var i = 1; i<cardElements+1; i++){
+    if(playerRole === 'dresser'){
+      color = "#f99443"; /* color-orange */
+    }else if (playerRole === 'copycat') {
+      color = "#4394f9"; /* color-blue*/
+    }
+    document.getElementById('card-'+[i]).style.backgroundColor = color;
+  }
 }
 
 function switchStage(cardNumber) {

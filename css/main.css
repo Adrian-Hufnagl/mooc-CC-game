@@ -20,11 +20,11 @@ body{
 
 h1{
   padding: 1% 0 0 10%;
-  color: sandybrown;
+  color: #f99443;
 }
 
 h2, h3{
-  color: sandybrown;
+  color: #f99443;
 }
 
 .container {
@@ -108,7 +108,8 @@ p{
   width: 100px;
   padding: 10px;
   display: inline-block;
-  /*background-image: url("data:image/svg+xml;utf8,<svg><src=\"img/Figure_shape3.svg\"></svg>");*/
+  border-style:solid;
+  border-color: #222;
 }
 
 
