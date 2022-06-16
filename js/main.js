@@ -1,9 +1,14 @@
 var explainer = false;
-var selectedColor = 0;
+var selectedColor;
 var selectedColorElement;
 var coloring = '';
 var playerRole;
 var characterCards;
+
+var selectedCardElements;
+var selectedCardContent;
+var selectedCard
+var colorCard = document.getElementById("big-color-card");
 
 function shuffleCards() {
   var cards1 = document.querySelector('#card-list-1');
@@ -30,11 +35,11 @@ function shuffleColors() {
 function startGame(creator) {
   /*save the chosen role */
   playerRole = creator;
-  /*alert(playerRole);*/ 
+  /*alert(playerRole);*/
   setTextForRole();
   setCardsBackground();
 
-  if(!creator){
+  if (!creator) {
     explainer = true;
   }
   var stage1 = document.getElementById("stage-1");
@@ -44,11 +49,11 @@ function startGame(creator) {
 
 }
 
-function setTextForRole(){
+function setTextForRole() {
   let text1;
   let text2;
   if (playerRole === 'dresser') {
-    text1 = "Pick a figure:" ;
+    text1 = "Pick a figure:";
   } else if (playerRole === 'copycat') {
     text1 = "Pick the figure that the Dresser describes to you:";
   }
@@ -62,28 +67,29 @@ function setTextForRole(){
   document.getElementById("explain-text-stage-2").innerHTML = text2;
 }
 
-function setCardsBackground(){
+function setCardsBackground() {
   cardElements = 10;
   var color;
-  for (var i = 1; i<cardElements+1; i++){
-    if(playerRole === 'dresser'){
+  for (var i = 1; i < cardElements + 1; i++) {
+    if (playerRole === 'dresser') {
       color = "#f99443"; /* color-orange */
-    }else if (playerRole === 'copycat') {
+    } else if (playerRole === 'copycat') {
       color = "#4394f9"; /* color-blue*/
     }
-    document.getElementById('card-'+[i]).style.backgroundColor = color;
+    document.getElementById('card-' + [i]).style.backgroundColor = color;
   }
 }
 
 function switchStage(cardNumber) {
-  console.log('switch')
-  var selectedCard = document.getElementById("card-" + cardNumber.toString());
-  var selectedCardElements = selectedCard.children;
-  var colorCard = document.getElementById("big-color-card");
-  for (let i = 0; i <= selectedCardElements.length; i++) {
-    selectedCardElements[0].setAttribute("onclick","colorObject(this)");
-    colorCard.appendChild(selectedCardElements[0]);
-  }
+
+  // Zuerst gewählte Karte auf neuen Screen Übertagen
+  //
+  console.log('switch with cardNumber: ' + cardNumber.toString());
+  selectedCard = document.getElementById("card-" + cardNumber.toString());
+  selectedCardContent = selectedCard.children[0];
+  colorCard.appendChild(selectedCardContent);
+
+
   var stage1 = document.getElementById("stage-1");
   var stage2 = document.getElementById("stage-2");
 
@@ -97,6 +103,36 @@ function switchStage(cardNumber) {
   } else {
     stage2.style.display = "none";
   }
+  delay(500).then(() => makeElementsColorizable());
+}
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+function makeElementsColorizable() {
+  var script = document.createElement('script');
+  script.src = "../js/main.js";
+
+  selectedCardElements = colorCard.children[0].contentDocument.children[0].children[0].children[1].children;
+  colorCard.children[0].contentDocument.children[0].appendChild(script);
+  for (let i = 1; i < selectedCardElements.length; i++) {
+    selectedCardElements[i].setAttribute("onclick", "colorObject(this)");
+    selectedCardElements[i].classList.add('svg-element');
+    var css = 'svg-element:hover{-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));}';
+    var style = document.createElement('style');
+    if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }
+    selectedCardElements[i].appendChild(style);
+
+    //selectedCardContent.contentDocument.children[0].children[0].children[1].children[i].remove();
+    //selectedCardContent.contentDocument.children[0].children[0].children[1].appendChild(selectedCardElements[i])
+    //console.log(selectedCardContent.contentDocument.children[0].children[0].children[1]);
+  }
+
 }
 
 function lockCharacter() {
@@ -118,66 +154,88 @@ function lockCharacter() {
   stage3.style.display = "inline-block";
 }
 
-function restartGame(){
+function restartGame() {
   location.reload();
 }
 
-function selectColor(color, colorElement){
+function selectColor(color, colorElement) {
   selectedColor = color
+  news = color;
   selectedColorElement = colorElement;
-  console.log(color);
+  //Make Cursor the color Bucket
+  var cursor = document.body;
+  console.log(cursor);
+  cursor.setAttribute("style", "cursor: url(../img/buckets/" + selectedColor.toString() + ".png) 4 120 60 60, auto;");
+  console.log('color');
+  console.log(selectedColor);
+  console.log(colorElement);
 }
 
-  function colorObject(object) {
-  svgimage = object.children[0];
+function colorObject(object) {
+  svgPaths = object.children[0].children;
+
   object.removeAttribute('onclick');
-  console.log(object);
-    switch (selectedColor) {
-      case 1:
-        console.log('colorObject')
-        console.log(object)
-        coloring = 'grey';
-        svgimage.style.fill='#aaa'
-        break;
-      case 2:
-        coloring = 'orange';
-        svgimage.style.fill='#f99443'
-        break;
-      case 3:
-        coloring = 'green';
-        svgimage.style.fill='#88ff88'
-        break;
-      case 4:
-        coloring = 'pink';
-        svgimage.style.fill='#f75399'
-        break;
-      case 5:
-        coloring = 'blue';
-        svgimage.style.fill='#4394f9'
-        break;
-      case 6:
-        coloring = 'black';
-        svgimage.style.fill='black'
-        break;
-      case 7:
-        coloring = 'red';
-        svgimage.style.fill='#800000'
-        break;
-      case 8:
-        coloring = 'brown';
-        svgimage.style.fill='#8B4513'
-        break;
-      case 9:
-        coloring = 'white';
-        svgimage.style.fill='white'
-        break;
-      case 10:
-        coloring = 'yellow';
-        svgimage.style.fill='#c9a403'
-        break;
-      default:
-        break;
-    }
-    selectedColor = 0;
-    selectedColorElement.style.display = 'none';
+  console.log('selectedColor');
+  console.log(selectedColor);
+  console.log(this.selectedColor);
+  console.log(this.selectedColorElement);
+
+  var colorString;
+  switch (selectedColor) {
+    case 1:
+      console.log('colorObject')
+      console.log(object)
+      coloring = 'grey';
+      colorString = '#aaa'
+      break;
+    case 2:
+      coloring = 'orange';
+      colorString = '#f99443'
+      break;
+    case 3:
+      coloring = 'green';
+      colorString = '#88ff88'
+      break;
+    case 4:
+      coloring = 'pink';
+      colorString = '#f75399'
+      break;
+    case 5:
+      coloring = 'blue';
+      colorString = '#4394f9'
+      break;
+    case 6:
+      coloring = 'black';
+      colorString = 'black'
+      break;
+    case 7:
+      coloring = 'red';
+      colorString = '#800000'
+      break;
+    case 8:
+      coloring = 'brown';
+      colorString = '#8B4513'
+      break;
+    case 9:
+      coloring = 'white';
+      colorString = 'white'
+      break;
+    case 10:
+      coloring = 'yellow';
+      colorString = '#c9a403'
+      break;
+    default:
+      break;
   }
+  console.log('colorString');
+  console.log(colorString);
+  for (var i = 0; i < svgPaths.length; i++) {
+    if(svgPaths[i].hasAttribute('fill')){
+      //console.log(svgPaths[i]);
+      svgPaths[i].style.fill = '#c9a403';
+    }
+  }
+
+  selectedColor = 0;
+  selectedColorElement.style.display = 'none';
+}
