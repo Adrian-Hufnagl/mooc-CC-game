@@ -1,5 +1,5 @@
 var explainer = false;
-var selectedColor;
+localStorage.setItem("selectedColor", 0);
 var selectedColorElement;
 var coloring = '';
 var playerRole;
@@ -86,7 +86,7 @@ function switchStage(cardNumber) {
   //
   console.log('switch with cardNumber: ' + cardNumber.toString());
   selectedCard = document.getElementById("card-" + cardNumber.toString());
-  selectedCardContent = selectedCard.children[0];
+  selectedCardContent = selectedCard.children[1];
   colorCard.appendChild(selectedCardContent);
 
 
@@ -159,72 +159,76 @@ function restartGame() {
 }
 
 function selectColor(color, colorElement) {
-  selectedColor = color
-  news = color;
+  localStorage.setItem("selectedColor", color);
   selectedColorElement = colorElement;
   //Make Cursor the color Bucket
   var cursor = document.body;
-  console.log(cursor);
-  cursor.setAttribute("style", "cursor: url(../img/buckets/" + selectedColor.toString() + ".png) 4 120 60 60, auto;");
-  console.log('color');
-  console.log(selectedColor);
-  console.log(colorElement);
+  cursor.setAttribute("style", "cursor: url(../img/buckets/" + localStorage.getItem('selectedColor').toString() + ".png), auto;");
+  console.log('color as setted in main.js:');
+  console.log(localStorage.getItem('selectedColor'));
 }
 
 function colorObject(object) {
   svgPaths = object.children[0].children;
-
   object.removeAttribute('onclick');
-  console.log('selectedColor');
-  console.log(selectedColor);
-  console.log(this.selectedColor);
-  console.log(this.selectedColorElement);
-
+  console.log('color as received in colorObject:');
+  console.log(localStorage.getItem('selectedColor'));
+  var colorSwitch = localStorage.getItem('selectedColor');
+  console.log('colorSwitch ' + colorSwitch);
   var colorString;
-  switch (selectedColor) {
+  switch (parseInt(localStorage.getItem('selectedColor'))) {
     case 1:
-      console.log('colorObject')
-      console.log(object)
+      console.log('Switch')
       coloring = 'grey';
-      colorString = '#aaa'
+      colorString = '#aaaaaa'
       break;
     case 2:
+      console.log('Switch')
       coloring = 'orange';
       colorString = '#f99443'
       break;
     case 3:
+      console.log('Switch')
       coloring = 'green';
-      colorString = '#88ff88'
+      colorString = '#33bb33'
       break;
     case 4:
+      console.log('Switch')
       coloring = 'pink';
       colorString = '#f75399'
       break;
     case 5:
+      console.log('Switch')
       coloring = 'blue';
       colorString = '#4394f9'
       break;
     case 6:
+      console.log('Switch')
       coloring = 'black';
-      colorString = 'black'
+      colorString = '#000000'
       break;
     case 7:
+      console.log('Switch')
       coloring = 'red';
-      colorString = '#800000'
+      colorString = '#d00000'
       break;
     case 8:
+      console.log('Switch')
       coloring = 'brown';
       colorString = '#8B4513'
       break;
     case 9:
+      console.log('Switch')
       coloring = 'white';
-      colorString = 'white'
+      colorString = '#ffffff'
       break;
     case 10:
+      console.log('Switch')
       coloring = 'yellow';
-      colorString = '#c9a403'
+      colorString = '#f9c403'
       break;
     default:
+      console.log('Outside Switch')
       break;
   }
   console.log('colorString');
@@ -232,10 +236,10 @@ function colorObject(object) {
   for (var i = 0; i < svgPaths.length; i++) {
     if(svgPaths[i].hasAttribute('fill')){
       //console.log(svgPaths[i]);
-      svgPaths[i].style.fill = '#c9a403';
+      svgPaths[i].style.fill = colorString;
     }
   }
 
-  selectedColor = 0;
+  localStorage.setItem('selectedColor', 0);
   selectedColorElement.style.display = 'none';
 }

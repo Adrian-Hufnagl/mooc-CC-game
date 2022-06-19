@@ -134,14 +134,14 @@ p{
   width: 34px;
 }
 
-#color-red{background: #800000}
+#color-red{background: #d00000}
 #color-orange{background: #f99443}
-#color-yellow{background: #c9a403}
+#color-yellow{background: #f9c403}
 #color-brown{background: #8B4513}
 #color-black{background: #000}
 #color-blue{background: #4394f9}
 #color-grey{background: #aaa}
-#color-green{background: #88ff88}
+#color-green{background: #33bb33}
 #color-pink{background: #f75399}
 #color-white{background: #fff}
 
@@ -219,9 +219,16 @@ p{
   display: flex;
 }
 
+.card-overlay{
+  position: absolute;
+  height: inherit;
+  width: inherit;
+}
+
 .svg-element:hover{
   -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
   filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+  cursor: pointer;
 }
 
 g:hover{
