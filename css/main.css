@@ -128,7 +128,7 @@ p{
 
 .color-card:hover{
   cursor: pointer;
-  border: 8px solid #4394f9;
+  border: 8px solid #73b4f9;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   height: 34px;
   width: 34px;
@@ -225,11 +225,6 @@ p{
   width: inherit;
 }
 
-.svg-element:hover{
-  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-  cursor: pointer;
-}
 
 g:hover{
   -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));

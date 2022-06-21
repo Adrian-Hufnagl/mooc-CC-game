@@ -1,9 +1,11 @@
 var explainer = false;
 localStorage.setItem("selectedColor", 0);
+localStorage.setItem("gameCounter", 0);
+localStorage.setItem("gameEnd", 0);
 var selectedColorElement;
 var coloring = '';
 var playerRole;
-var characterCards;
+var colorCards;
 
 var selectedCardElements;
 var selectedCardContent;
@@ -113,30 +115,21 @@ function delay(time) {
 function makeElementsColorizable() {
   var script = document.createElement('script');
   script.src = "../js/main.js";
-
-  selectedCardElements = colorCard.children[0].contentDocument.children[0].children[0].children[1].children;
+  selectedCardElements = colorCard.children[0].contentDocument.children[0].children;
   colorCard.children[0].contentDocument.children[0].appendChild(script);
   for (let i = 1; i < selectedCardElements.length; i++) {
     selectedCardElements[i].setAttribute("onclick", "colorObject(this)");
     selectedCardElements[i].classList.add('svg-element');
-    var css = 'svg-element:hover{-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));}';
-    var style = document.createElement('style');
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
-    selectedCardElements[i].appendChild(style);
-
+    selectedCardElements[i].setAttribute("onmouseover", "style='stroke: black; -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)); filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));'");
+    selectedCardElements[i].setAttribute("onmouseout", "style='stroke: none; -webkit-filter: none; filter: none;'");
   }
 
+  colorCards = document.getElementsByClassName('color-card');
+  console.log(colorCards);
 }
 
 function lockCharacter() {
   var stage2 = document.getElementById("stage-2");
-  var stage3 = document.getElementById("stage-3");
-  var colorCard = document.getElementById("big-color-card");
-  var selectedCardElements = colorCard.children;
   document.getElementById("explain-text-stage-2").innerHTML = 'This is your character!';
   var colors = document.getElementsByClassName('color-column');
   var saveButton = document.getElementById('save-button');
@@ -145,14 +138,6 @@ function lockCharacter() {
   saveButton.remove();
   colors[1].remove();
   colors[0].remove();
-  /*var saveCard = document.getElementById("big-save-card");
-  for (let i = 0; i <= selectedCardElements.length; i++) {
-    console.log('lock element: ' + i)
-    console.log(selectedCardElements[i])
-    saveCard.appendChild(selectedCardElements[0]);
-  }
-  stage2.style.display = "none";
-  stage3.style.display = "inline-block";*/
 }
 
 function restartGame() {
@@ -162,19 +147,22 @@ function restartGame() {
 function selectColor(color, colorElement) {
   localStorage.setItem("selectedColor", color);
   selectedColorElement = colorElement;
+  selectedColorElement.setAttribute("style", "border: 8px solid #2364f9; height: 34px;width: 34px;");
+
   //Make Cursor the color Bucket
-  var cursor = document.body;
-  cursor.setAttribute("style", "cursor: url(../img/buckets/" + localStorage.getItem('selectedColor').toString() + ".png), auto;");
-  console.log('color as setted in main.js:');
-  console.log(localStorage.getItem('selectedColor'));
+  //var cursor = document.body;
+  //cursor.setAttribute("style", "cursor: url(../img/buckets/" + localStorage.getItem('selectedColor').toString() + ".png), auto;");
+}
+
+function outSide() {
+  console.log('im outside')
 }
 
 function colorObject(object) {
   if(parseInt(localStorage.getItem('selectedColor')) !== 0){
     svgPaths = object.children[0].children;
     object.removeAttribute('onclick');
-    console.log('color as received in colorObject:');
-    console.log(localStorage.getItem('selectedColor'));
+    console.log('color as received in colorObject: ' + localStorage.getItem('selectedColor'));
     var colorSwitch = localStorage.getItem('selectedColor');
     console.log('colorSwitch ' + colorSwitch);
     var colorString;
@@ -243,6 +231,7 @@ function colorObject(object) {
     }
 
     localStorage.setItem('selectedColor', 0);
-    selectedColorElement.style.display = 'none';
+    outSide();
+    console.log('do outside')
   }
 }
