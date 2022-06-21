@@ -1,7 +1,8 @@
 var explainer = false;
 localStorage.setItem("selectedColor", 0);
-localStorage.setItem("gameCounter", 0);
+localStorage.setItem("gameStep", 0);
 localStorage.setItem("gameEnd", 0);
+localStorage.setItem("disabled", []);
 var selectedColorElement;
 var coloring = '';
 var playerRole;
@@ -114,30 +115,41 @@ function delay(time) {
 
 function makeElementsColorizable() {
   var script = document.createElement('script');
+  var endGame = 0;
   script.src = "../js/main.js";
   selectedCardElements = colorCard.children[0].contentDocument.children[0].children;
   colorCard.children[0].contentDocument.children[0].appendChild(script);
   for (let i = 1; i < selectedCardElements.length; i++) {
     selectedCardElements[i].setAttribute("onclick", "colorObject(this)");
     selectedCardElements[i].classList.add('svg-element');
-    selectedCardElements[i].setAttribute("onmouseover", "style='stroke: black; -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)); filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));'");
+    selectedCardElements[i].setAttribute("onmouseover", "style='stroke: black; -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)); filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)); cursor:pointer;'");
     selectedCardElements[i].setAttribute("onmouseout", "style='stroke: none; -webkit-filter: none; filter: none;'");
+    if (selectedCardElements[i].classList.contains('svg-element')
+      && !selectedCardElements[i].hasAttribute('display')
+    && selectedCardElements[i].tagName === 'g'){
+      endGame += 1;
+    }
   }
 
   colorCards = document.getElementsByClassName('color-card');
   console.log(colorCards);
+  delay(200).then(() => localStorage.setItem("gameEnd", endGame));
 }
 
 function lockCharacter() {
-  var stage2 = document.getElementById("stage-2");
-  document.getElementById("explain-text-stage-2").innerHTML = 'This is your character!';
-  var colors = document.getElementsByClassName('color-column');
-  var saveButton = document.getElementById('save-button');
-  var restartButton = document.getElementById('restart-button');
-  stage2.children[2].appendChild(restartButton);
-  saveButton.remove();
-  colors[1].remove();
-  colors[0].remove();
+  if(localStorage.getItem('gameStep') >= localStorage.getItem('gameEnd')){
+    console.log(localStorage.getItem('gameStep'))
+    console.log(localStorage.getItem('gameEnd'))
+    var stage2 = document.getElementById("stage-2");
+    document.getElementById("explain-text-stage-2").innerHTML = 'This is your character!';
+    var colors = document.getElementsByClassName('color-column');
+    var saveButton = document.getElementById('save-button');
+    var restartButton = document.getElementById('restart-button');
+    stage2.children[2].appendChild(restartButton);
+    saveButton.remove();
+    colors[1].remove();
+    colors[0].remove();
+  }
 }
 
 function restartGame() {
@@ -145,17 +157,25 @@ function restartGame() {
 }
 
 function selectColor(color, colorElement) {
-  localStorage.setItem("selectedColor", color);
-  selectedColorElement = colorElement;
-  selectedColorElement.setAttribute("style", "border: 8px solid #2364f9; height: 34px;width: 34px;");
+  console.log('gameEnd: ' + localStorage.getItem('gameEnd'));
+  if (parseInt(localStorage.getItem("selectedColor")) === 0) {
+    localStorage.setItem("selectedColor", color);
+    selectedColorElement = colorElement;
+    //Make border for Clicked Color
+    selectedColorElement.setAttribute("style", "opacity: 0.2;");
+    selectedColorElement.classList.remove('color-card-hover');
+    selectedColorElement.removeAttribute('onclick');
 
-  //Make Cursor the color Bucket
-  //var cursor = document.body;
-  //cursor.setAttribute("style", "cursor: url(../img/buckets/" + localStorage.getItem('selectedColor').toString() + ".png), auto;");
-}
-
-function outSide() {
-  console.log('im outside')
+    if(parseInt(localStorage.getItem('gameStep'))+1 >= parseInt(localStorage.getItem('gameEnd'))){
+      var saveButton = document.getElementById('save-button');
+      saveButton.disabled = false;
+      saveButton.setAttribute("style", "opacity: 1;");
+    }
+    //Make Cursor the color Bucket
+    //var cursor = document.body;
+    //cursor.setAttribute("style", "cursor: copy;");
+    //cursor.setAttribute("style", "cursor: url(../img/buckets/" + localStorage.getItem('selectedColor').toString() + ".png), auto;");
+  }
 }
 
 function colorObject(object) {
@@ -221,8 +241,6 @@ function colorObject(object) {
         console.log('Outside Switch')
         break;
     }
-    console.log('colorString');
-    console.log(colorString);
     for (var i = 0; i < svgPaths.length; i++) {
       if(svgPaths[i].hasAttribute('fill')){
         //console.log(svgPaths[i]);
@@ -231,7 +249,7 @@ function colorObject(object) {
     }
 
     localStorage.setItem('selectedColor', 0);
-    outSide();
-    console.log('do outside')
+    localStorage.setItem('gameStep', parseInt(localStorage.getItem('gameStep')) + 1 );
+    console.log('gamestep: ' + localStorage.getItem('gameStep'));
   }
 }
